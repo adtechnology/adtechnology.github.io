@@ -1,0 +1,1 @@
+var Token={AT_RULE:"at-rule",AT_RULE_BLOCK:"at-rule-block",AT_RULE_BLOCK_SCOPE:"at-rule-block-scope",COMMENT:"comment",NESTED_BLOCK:"nested-block",NESTED_BLOCK_SCOPE:"nested-block-scope",PROPERTY:"property",PROPERTY_BLOCK:"property-block",PROPERTY_NAME:"property-name",PROPERTY_VALUE:"property-value",RULE:"rule",RULE_SCOPE:"rule-scope"};module.exports=Token;
