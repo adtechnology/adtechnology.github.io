@@ -14,9 +14,11 @@
         (function(a,b){if(typeof exports==="object"){module.exports=b(a)}else{if(typeof define==="function"&&define.amd){define([],b(a))}else{a.LazyLoad=b(a)}}})(typeof global!=="undefined"?global:this.window||this.global,function(a){const c={src:"data-src",srcset:"data-srcset",selector:".lazyload"};const e=function(){let extended={};let deep=false;let i=0;let length=arguments.length;if(Object.prototype.toString.call(arguments[0])==="[object Boolean]"){deep=arguments[0];i++}let merge=function(f){for(let prop in f){if(Object.prototype.hasOwnProperty.call(f,prop)){if(deep&&Object.prototype.toString.call(f[prop])==="[object Object]"){extended[prop]=e(true,extended[prop],f[prop])}else{extended[prop]=f[prop]}}}};for(;i<length;i++){let obj=arguments[i];merge(obj)}return extended};function d(f,g){this.settings=e(c,g||{});this.images=f||document.querySelectorAll(this.settings.selector);this.observer=null;this.init()}d.prototype={init:function(){if(!a.IntersectionObserver){this.loadImages();return}let self=this;let observerConfig={root:null,rootMargin:"0px",threshold:[0]};this.observer=new IntersectionObserver(function(f){f.forEach(function(g){if(g.intersectionRatio>0){self.observer.unobserve(g.target);let src=g.target.getAttribute(self.settings.src);let srcset=g.target.getAttribute(self.settings.srcset);if("img"===g.target.tagName.toLowerCase()){if(src){g.target.src=src}if(srcset){g.target.srcset=srcset}}else{g.target.style.backgroundImage="url("+src+")"}}})},observerConfig);this.images.forEach(function(f){self.observer.observe(f)})},loadAndDestroy:function(){if(!this.settings){return}this.loadImages();this.destroy()},loadImages:function(){if(!this.settings){return}let self=this;this.images.forEach(function(f){let src=f.getAttribute(self.settings.src);let srcset=f.getAttribute(self.settings.srcset);if("img"===f.tagName.toLowerCase()){if(src){f.src=src}if(srcset){f.srcset=srcset}}else{f.style.backgroundImage="url("+src+")"}})},destroy:function(){if(!this.settings){return}this.observer.disconnect();this.settings=null}};a.lazyload=function(f,g){return new d(f,g)};if(a.jQuery){const b=a.jQuery;b.fn.lazyload=function(f){f=f||{};f.attribute=f.attribute||"data-src";new d(b.makeArray(this),f);return this}}return d});
 
     </script>
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Carlos Bracho - Senior Ad Technology Lead at Axel Springer SE</title>
+    <title>Carlos Bracho - Commercial Engineer</title>
     <meta name="description" content="CV of Carlos Bracho - Ad Technology"/>
     <meta name="keywords"
           content="adserver, werbung, advertisement, management, CTO, teamleiter, leadership, programmatic, holistic, axel springer, appnexus, DSP. DMP, SSP"/>
@@ -93,7 +95,7 @@
                .addService(googletag.pubads()));*/
 
             googletag.pubads().enableSingleRequest();
-            googletag.pubads().setTargeting('space', ['ascdp']);
+            googletag.pubads().setTargeting('space', ['puce']);
             googletag.pubads().collapseEmptyDivs();
             googletag.pubads().setCentering(true);
             googletag.pubads().setCookieOptions(1);
@@ -126,8 +128,8 @@
 
 
                         <a class="logo" href="index.html">
-                            <div style="font-size:3em; color:Navy">
-                                <i class="fas fa-briefcase"></i>
+                            <div style="font-size:3em; color:DodgerBlue">
+                                <i class="fas fa-graduation-cap"></i>
                             </div>
                         </a>
                         <!-- open Lightbox -->
@@ -144,20 +146,20 @@
 
             <div class="nav-bg-box">
                 <div class="container position-relative phone-width">
-                    <div class="row">
+                    <div class="row">                                       
                         <!--close lightbox -->
                         <a href="#" class="close-lightbox">
                             <span class="line1"></span>
                             <span class="line2"></span>
-                        </a>
+                        </a>                    
                     </div>
                 </div>
 
                 <ul class="navbar-nav-tamox">
                     <li><a href="index.html">Home</a></li>
 
-                    <li><a href="experience.html" class="active">Experience</a></li>
-                    <li><a href="education.html">Education</a></li>
+                    <li><a href="experience.html">Experience</a></li>
+                    <li><a href="education.html" class="active">Education</a></li>
                     <li><a href="cv.html">CV Download</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
@@ -171,8 +173,8 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="text-center">
-                            <h1 class="mb-1 font-weight-bold text-capitalize">My Experience</h1>
-                            <p class="text-success mb-0">@ Axel Springer</p>
+                            <h1 class="mb-1 font-weight-bold text-capitalize">My Education</h1>
+                            <p class="text-success mb-0">@ Universidad Católica del Ecuador</p>
                         </div>
                     </div>
                 </div>
@@ -184,7 +186,7 @@
 
         <!-- Start Work Detail -->
     <div class="text-center mx-auto pt-4 pb-4">
-        <img class="lazyload img-fluid" src="https://d2td6usx9v1yi8.cloudfront.net/images/placeholder.png" data-src="https://d2td6usx9v1yi8.cloudfront.net/images/ascdp.jpg" alt="Axel Springer Ad Technology">
+        <img class="lazyload img-fluid" src="https://d2td6usx9v1yi8.cloudfront.net/images/placeholder.png" data-src="https://d2td6usx9v1yi8.cloudfront.net/images/puce.jpg" alt="Axel Springer Ad Technology">
     </div>
 
     <div class="text-center" style="font-size:1em; cursor:pointer">
@@ -199,22 +201,23 @@
                 <div class="row mt-2">
                     <div class="col-lg-4 mt-3 bg-light">
                         <div class="pt-2">
-                            <p class="h3 text-primary">Job Details</p>
+                            <p class="h3 text-primary">Education Details</p>
                             <ul class="list-inline mb-0 mt-3">
-                              <li class="list-inline-item text-muted mb-1 d-block"><span class="mr-2 text-dark font-weight-bold">Title:</span>Senior Ad Technology Lead</li>
-                              <li class="list-inline-item text-muted mb-1 d-block"><span class="mr-2 text-dark font-weight-bold">Company:</span>Axel Springer SE / Corporate Digital Platfroms</li>
-                              <li class="list-inline-item text-muted mb-1 d-block"><span class="mr-2 text-dark font-weight-bold">Location:</span>Berlin, Germany</li>
-                              <li class="list-inline-item text-muted mb-1 d-block"><span class="mr-2 text-dark font-weight-bold">From:</span>June 2017</li>
-                              <li class="list-inline-item text-muted mb-1 d-block"><span class="mr-2 text-dark font-weight-bold">To:</span>June 2018</li>
+                              <li class="list-inline-item text-muted mb-1 d-block"><span class="mr-2 text-dark font-weight-bold">Degree:</span>Commercial Engineer - Marketing</li>
+                              <li class="list-inline-item text-muted mb-1 d-block"><span class="mr-2 text-dark font-weight-bold">University:</span>Universidad Católica del Ecuador</li>
+                              <li class="list-inline-item text-muted mb-1 d-block"><span class="mr-2 text-dark font-weight-bold">Location:</span>Quito, Ecuador</li>
+                              <li class="list-inline-item text-muted mb-1 d-block"><span class="mr-2 text-dark font-weight-bold">From:</span>October 2001</li>
+                              <li class="list-inline-item text-muted mb-1 d-block"><span class="mr-2 text-dark font-weight-bold">To:</span>October 2006</li>
                             </ul>
                         </div>
                         <hr class="my-4">
-                        <p class="h4 text-primary">My Experience</p>
+                        <p class="h4 text-primary">My Education</p>
                         <nav class="nav flex-column">
-                            <a class="nav-link active" href="as-adtechnology-lead.html"><i class="far fa-check-circle"></i> Senior Ad Technology Lead at Axel Springer</a>
-                            <a class="nav-link disabled" href="mi-adtechnology-lead.html"><i class="far fa-check-circle"></i> Team Lead Ad Technology at Media Impact</a>
-                            <a class="nav-link disabled" href="mi-adtechnology-mobile.html"><i class="far fa-check-circle"></i> Ad Technology Manager Mobile at Media Impact</a>
-                            <a class="nav-link disabled" href="softgames-mobile.html"><i class="far fa-check-circle"></i> Head of Submissions and QA at Softgames</a>
+                            <a class="nav-link disabled" href="master.html"><i class="far fa-check-circle"></i> Master of Science - TU Berlin</a>
+                            <a class="nav-link active" href="university.html"><i class="far fa-check-circle"></i> Commercial Engineer - PUCE</a>
+                            <a class="nav-link disabled" href="conflict.html"><i class="far fa-check-circle"></i> Further Education - Conflict Management</a>
+                            <a class="nav-link disabled" href="leadership.html"><i class="far fa-check-circle"></i> Further Education - New in Leadership</a>
+                            <a class="nav-link disabled" href="change.html"><i class="far fa-check-circle"></i> Further Education - Change Leadership</a>
                         </nav>
                         <!-- Async AdSlot 2 for Ad unit 'bracho_home' ### Size: [[300,250]] -->
                         <!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[1]]) -->
@@ -235,36 +238,22 @@
 
                     <div class="col-lg-8 mt-3">
                         <div class="work-detail-title">
-                            <h1 class="mb-0">Senior Ad Technology Lead</h1>
-                            <h6 class="text-muted"><a href="https://www.axelspringer.com" target="_blank">Axel Springer SE / Corporate Digital Platfroms</a></h6>
+                            <h1 class="mb-0">Commercial Engineer - Marketing</h1>
+                            <h6 class="text-muted"><a href="https://www.puce.edu.ec/portal/content/Administraci%C3%B3n%20de%20Empresas/74?link=oln30.redirect" target="_blank">Universidad Católica del Ecuador</a></h6>
                         </div>
                         <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/aHmTBtTBz7E?autoplay=1&loop=1&rel=0" allowfullscreen></iframe>
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/fDkhRx_J3x0?autoplay=1&loop=1&rel=0" allowfullscreen></iframe>
                         </div>
                         <div class="mt-4">
-                            <p class="text-muted">In Corporate Digital Platforms, global strategies have been established for the entire Axel Springer SE Corporation in the topic of Data and Ad Technology. The most successful project I have been responsible for, was the migration to AppNexus of all German publishers marketed by Media Impact. Thanks to this migration, Media Impact has increased its digital advertising revenues and they internal processes have been improved and automated</p>
-                            <p class="text-muted">One of the essential functions of this position is the support and consultancy at the corporate level for the integration and acquisition of advertising technologies. We are specialized in providing solutions and, above all, to maximize digital revenues.</p>
-                            <p class="text-info">Responsibilities</p>
-                                <ul class="text-success">
-                                    <li>Lead a team of five to address technical issues of Ad Technology and Ad Solutions</li>
-                                    <li>Ad Stack consulting and integrations in the Axel Springer publishers and media houses</li>
-                                    <li>First Level Support for Campaign Management</li>
-                                    <li>Development and advice of new advertising products</li>
-                                    <li>Integration and evaluation of Targeting and DMP technologies</li>
-                                    <li>Advice and implementation of programmatic technologies, setup of the holistic system and integration of PreBid.</li>
-                                    <li>Design, development and implementation of tools to facilitate work with the ad stack or to perform automated processes.</li>
-                                    <li>GDPR for Advertisement</li>
-                                    <li>Association work at the BVDW - Deputy Head of Unit Ad Technology</li>
-                                </ul>
+                            <p class="text-muted">The career of Business Administration of the PUCE, trains professionals who need to develop skills focused on planning, managerial leadership and process evaluation in organizations of different nature; focusing especially on the application of information technologies in the strategic business prospective, for the promotion of entrepreneurship. It also provides a diversification of conceptual tools to catalyze a structural analysis of the business macro and microenvironment, with the purpose of formulating and managing strategies aligned with social responsibility, which promote local, national and international development.</p>
+
                             <div class="jumbotron">
-                                <h1 class="display-4">Yes, press!</h1>
-                                <p class="lead">Our most famous project has caused a lot of press attention</p>
+                                <h1 class="display-4">Yes, graduated!</h1>
+                                <p class="lead">See my Theses</p>
                                 <hr class="my-4">
-                                <p>Our work is a model to follow to achieve an optimal advertising system.</p>
+                                <p>On the PUCE's website</p>
                                 <p class="lead">
-                                    <a class="btn btn-primary mt-1 btn-sm" href="https://www.wuv.de/digital/appnexus_chef_o_kelley_google_ist_verwundbar" role="button" target="_blank">WUV</a>
-                                    <a class="btn btn-primary mt-1 btn-sm" href="https://www.adzine.de/2018/06/programmatic-markt-auf-dem-weg-zur-unabhaengigkeit/" role="button" target="_blank">Adzine</a>
-                                    <a class="btn btn-primary mt-1 btn-sm" href="https://www.adzine.de/2018/03/wie-sich-media-impact-von-googles-ad-stack-emanzipierte/" role="button" target="_blank">Adzine</a>
+                                    <a class="btn btn-primary mt-1 btn-lg" href="http://repositorio.puce.edu.ec/handle/22000/3120" role="button" target="_blank">University's Repository</a>
                                 </p>
                             </div>
                         </div>

@@ -14,9 +14,11 @@
         (function(a,b){if(typeof exports==="object"){module.exports=b(a)}else{if(typeof define==="function"&&define.amd){define([],b(a))}else{a.LazyLoad=b(a)}}})(typeof global!=="undefined"?global:this.window||this.global,function(a){const c={src:"data-src",srcset:"data-srcset",selector:".lazyload"};const e=function(){let extended={};let deep=false;let i=0;let length=arguments.length;if(Object.prototype.toString.call(arguments[0])==="[object Boolean]"){deep=arguments[0];i++}let merge=function(f){for(let prop in f){if(Object.prototype.hasOwnProperty.call(f,prop)){if(deep&&Object.prototype.toString.call(f[prop])==="[object Object]"){extended[prop]=e(true,extended[prop],f[prop])}else{extended[prop]=f[prop]}}}};for(;i<length;i++){let obj=arguments[i];merge(obj)}return extended};function d(f,g){this.settings=e(c,g||{});this.images=f||document.querySelectorAll(this.settings.selector);this.observer=null;this.init()}d.prototype={init:function(){if(!a.IntersectionObserver){this.loadImages();return}let self=this;let observerConfig={root:null,rootMargin:"0px",threshold:[0]};this.observer=new IntersectionObserver(function(f){f.forEach(function(g){if(g.intersectionRatio>0){self.observer.unobserve(g.target);let src=g.target.getAttribute(self.settings.src);let srcset=g.target.getAttribute(self.settings.srcset);if("img"===g.target.tagName.toLowerCase()){if(src){g.target.src=src}if(srcset){g.target.srcset=srcset}}else{g.target.style.backgroundImage="url("+src+")"}}})},observerConfig);this.images.forEach(function(f){self.observer.observe(f)})},loadAndDestroy:function(){if(!this.settings){return}this.loadImages();this.destroy()},loadImages:function(){if(!this.settings){return}let self=this;this.images.forEach(function(f){let src=f.getAttribute(self.settings.src);let srcset=f.getAttribute(self.settings.srcset);if("img"===f.tagName.toLowerCase()){if(src){f.src=src}if(srcset){f.srcset=srcset}}else{f.style.backgroundImage="url("+src+")"}})},destroy:function(){if(!this.settings){return}this.observer.disconnect();this.settings=null}};a.lazyload=function(f,g){return new d(f,g)};if(a.jQuery){const b=a.jQuery;b.fn.lazyload=function(f){f=f||{};f.attribute=f.attribute||"data-src";new d(b.makeArray(this),f);return this}}return d});
 
     </script>
+
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Carlos Bracho - Senior Ad Technology Lead at Axel Springer SE</title>
+    <title>Carlos Bracho - Head of Submissions &amp; QA by Softgames</title>
     <meta name="description" content="CV of Carlos Bracho - Ad Technology"/>
     <meta name="keywords"
           content="adserver, werbung, advertisement, management, CTO, teamleiter, leadership, programmatic, holistic, axel springer, appnexus, DSP. DMP, SSP"/>
@@ -79,21 +81,14 @@
                 .addSize([320, 100], [[300, 250]])
                 .build();
 
-            /* var mapping2 = googletag.sizeMapping()
-               .addSize([320, 100], [[300, 250]])
-                .build(); */
 
-            /* Adslot 1 declaration */
             gptadslots.push(googletag.defineSlot('/28907441/bracho_home', [[728,90],[300,250]], 'div-gpt-ad-8907263-1')
                 .defineSizeMapping(mapping1)
                 .addService(googletag.pubads()));
-            /*Adslot 2 declaration
-            gptadslots.push(googletag.defineSlot('/28907441/bracho_home', [[300,250]], 'div-gpt-ad-8907263-2')
-               .defineSizeMapping(mapping2)
-               .addService(googletag.pubads()));*/
+
 
             googletag.pubads().enableSingleRequest();
-            googletag.pubads().setTargeting('space', ['ascdp']);
+            googletag.pubads().setTargeting('space', ['softmo']);
             googletag.pubads().collapseEmptyDivs();
             googletag.pubads().setCentering(true);
             googletag.pubads().setCookieOptions(1);
@@ -109,9 +104,8 @@
                 $(this).hide();
             });
         });
-
     </script>
-    <!--<script src="https://d2td6usx9v1yi8.cloudfront.net/js/jquery.min.js"></script>-->
+
 </head>
 
     <body>
@@ -126,8 +120,8 @@
 
 
                         <a class="logo" href="index.html">
-                            <div style="font-size:3em; color:Navy">
-                                <i class="fas fa-briefcase"></i>
+                            <div style="font-size:3em; color:OrangeRed">
+                                <i class="fas fa-mobile"></i>
                             </div>
                         </a>
                         <!-- open Lightbox -->
@@ -144,12 +138,12 @@
 
             <div class="nav-bg-box">
                 <div class="container position-relative phone-width">
-                    <div class="row">
+                    <div class="row">                                       
                         <!--close lightbox -->
                         <a href="#" class="close-lightbox">
                             <span class="line1"></span>
                             <span class="line2"></span>
-                        </a>
+                        </a>                    
                     </div>
                 </div>
 
@@ -172,7 +166,7 @@
                     <div class="col-lg-12">
                         <div class="text-center">
                             <h1 class="mb-1 font-weight-bold text-capitalize">My Experience</h1>
-                            <p class="text-success mb-0">@ Axel Springer</p>
+                            <p class="text-success mb-0">@ Softgames</p>
                         </div>
                     </div>
                 </div>
@@ -184,9 +178,10 @@
 
         <!-- Start Work Detail -->
     <div class="text-center mx-auto pt-4 pb-4">
-        <img class="lazyload img-fluid" src="https://d2td6usx9v1yi8.cloudfront.net/images/placeholder.png" data-src="https://d2td6usx9v1yi8.cloudfront.net/images/ascdp.jpg" alt="Axel Springer Ad Technology">
+        <img class="lazyload img-fluid" src="https://d2td6usx9v1yi8.cloudfront.net/images/placeholder.png" data-src="https://d2td6usx9v1yi8.cloudfront.net/images/sg.jpg"alt="Axel Springer Ad Technology">
     </div>
-
+    <!-- Async AdSlot 1 for Ad unit 'bracho_home' ### Size: [[728,90],[300,250]] -->
+    <!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[0]]) -->
     <div class="text-center" style="font-size:1em; cursor:pointer">
         <ads class="text-danger pt-1 text-center">Remove Ad  <i class="fas fa-times-circle"></i>
     <div id='div-gpt-ad-8907263-1' class="mt-0">
@@ -201,20 +196,20 @@
                         <div class="pt-2">
                             <p class="h3 text-primary">Job Details</p>
                             <ul class="list-inline mb-0 mt-3">
-                              <li class="list-inline-item text-muted mb-1 d-block"><span class="mr-2 text-dark font-weight-bold">Title:</span>Senior Ad Technology Lead</li>
-                              <li class="list-inline-item text-muted mb-1 d-block"><span class="mr-2 text-dark font-weight-bold">Company:</span>Axel Springer SE / Corporate Digital Platfroms</li>
+                              <li class="list-inline-item text-muted mb-1 d-block"><span class="mr-2 text-dark font-weight-bold">Title:</span>Head of Submissions &amp; QA by Softgames</li>
+                              <li class="list-inline-item text-muted mb-1 d-block"><span class="mr-2 text-dark font-weight-bold">Company:</span>SOFTGAMES – Mobile Entertainment Services GmbH</li>
                               <li class="list-inline-item text-muted mb-1 d-block"><span class="mr-2 text-dark font-weight-bold">Location:</span>Berlin, Germany</li>
-                              <li class="list-inline-item text-muted mb-1 d-block"><span class="mr-2 text-dark font-weight-bold">From:</span>June 2017</li>
-                              <li class="list-inline-item text-muted mb-1 d-block"><span class="mr-2 text-dark font-weight-bold">To:</span>June 2018</li>
+                              <li class="list-inline-item text-muted mb-1 d-block"><span class="mr-2 text-dark font-weight-bold">From:</span>November 2007</li>
+                              <li class="list-inline-item text-muted mb-1 d-block"><span class="mr-2 text-dark font-weight-bold">To:</span>May 2012</li>
                             </ul>
                         </div>
                         <hr class="my-4">
                         <p class="h4 text-primary">My Experience</p>
                         <nav class="nav flex-column">
-                            <a class="nav-link active" href="as-adtechnology-lead.html"><i class="far fa-check-circle"></i> Senior Ad Technology Lead at Axel Springer</a>
+                            <a class="nav-link disabled" href="as-adtechnology-lead.html"><i class="far fa-check-circle"></i> Senior Ad Technology Lead at Axel Springer</a>
                             <a class="nav-link disabled" href="mi-adtechnology-lead.html"><i class="far fa-check-circle"></i> Team Lead Ad Technology at Media Impact</a>
                             <a class="nav-link disabled" href="mi-adtechnology-mobile.html"><i class="far fa-check-circle"></i> Ad Technology Manager Mobile at Media Impact</a>
-                            <a class="nav-link disabled" href="softgames-mobile.html"><i class="far fa-check-circle"></i> Head of Submissions and QA at Softgames</a>
+                            <a class="nav-link active" href="softgames-mobile.html"><i class="far fa-check-circle"></i> Head of Submissions and QA at Softgames</a>
                         </nav>
                         <!-- Async AdSlot 2 for Ad unit 'bracho_home' ### Size: [[300,250]] -->
                         <!-- Adslot's refresh function: googletag.pubads().refresh([gptadslots[1]]) -->
@@ -225,47 +220,38 @@
                             </script>
                         </div>-->
 
-
-                        <!--<div class="text-center" style="font-size:1em; cursor:pointer">
-                            <ads class="text-danger pt-1 text-center">Remove Ad  <i class="fas fa-times-circle"></i>
-                                <script async type="text/javascript" src="https://cdn.carbonads.com/carbon.js?zoneid=1673&serve=CKYICK7J&placement=test&circle=dev" id="_carbonads_js" class="text-center"></script></ads></div>-->
+                        <!-- <hr class="my-4">
+                         <div class="text-center hidden-sm-down" style="font-size:1em; cursor:pointer">
+                             <ads class="text-danger pt-1 text-center">Remove Ad  <i class="fas fa-times-circle"></i>
+                                 <script async type="text/javascript" src="https://cdn.carbonads.com/carbon.js?zoneid=1673&serve=CKYICK7J&placement=test&circle=dev" id="_carbonads_js" class="text-center"></script></ads></div>-->
 
                         <!-- End AdSlot 2 -->
                     </div>
 
                     <div class="col-lg-8 mt-3">
                         <div class="work-detail-title">
-                            <h1 class="mb-0">Senior Ad Technology Lead</h1>
-                            <h6 class="text-muted"><a href="https://www.axelspringer.com" target="_blank">Axel Springer SE / Corporate Digital Platfroms</a></h6>
-                        </div>
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/aHmTBtTBz7E?autoplay=1&loop=1&rel=0" allowfullscreen></iframe>
+                            <h1 class="mb-0">Head of Submissions &amp; QA</h1>
+                            <h6 class="text-muted"><a href="https://www.softgames.de/" target="_blank">SOFTGAMES – Mobile Entertainment Services GmbH</a></h6>
                         </div>
                         <div class="mt-4">
-                            <p class="text-muted">In Corporate Digital Platforms, global strategies have been established for the entire Axel Springer SE Corporation in the topic of Data and Ad Technology. The most successful project I have been responsible for, was the migration to AppNexus of all German publishers marketed by Media Impact. Thanks to this migration, Media Impact has increased its digital advertising revenues and they internal processes have been improved and automated</p>
-                            <p class="text-muted">One of the essential functions of this position is the support and consultancy at the corporate level for the integration and acquisition of advertising technologies. We are specialized in providing solutions and, above all, to maximize digital revenues.</p>
+                            <p class="text-muted">My first job in Germany was in this fabulous SOFTGAMES company. Here I learned about the great world of mobile technologies and how they can be used for entertainment. I was responsible for the testing and submissions of these games to the different operators and I also had the pleasure of directing projects to develop new games for mobile phones.</p>
                             <p class="text-info">Responsibilities</p>
                                 <ul class="text-success">
-                                    <li>Lead a team of five to address technical issues of Ad Technology and Ad Solutions</li>
-                                    <li>Ad Stack consulting and integrations in the Axel Springer publishers and media houses</li>
-                                    <li>First Level Support for Campaign Management</li>
-                                    <li>Development and advice of new advertising products</li>
-                                    <li>Integration and evaluation of Targeting and DMP technologies</li>
-                                    <li>Advice and implementation of programmatic technologies, setup of the holistic system and integration of PreBid.</li>
-                                    <li>Design, development and implementation of tools to facilitate work with the ad stack or to perform automated processes.</li>
-                                    <li>GDPR for Advertisement</li>
-                                    <li>Association work at the BVDW - Deputy Head of Unit Ad Technology</li>
+                                    <li>Managed the development of mobile apps and games for iOS, Android, Blackberry, and J2ME</li>
+                                    <li>Organized and designed tests for products in development</li>
+                                    <li>Collaborated with the Marketing Department in generating content and managing projects</li>
+                                    <li>Improved internal processes for Submissions</li>
+                                    <li>Trained new members in the Submissions and Quality Assurance Department</li>
+                                    <li>Development of new advertising products "mobile-only"</li>
                                 </ul>
-                            <div class="jumbotron">
+                            <!--<div class="jumbotron">
                                 <h1 class="display-4">Yes, press!</h1>
                                 <p class="lead">Our most famous project has caused a lot of press attention</p>
                                 <hr class="my-4">
                                 <p>Our work is a model to follow to achieve an optimal advertising system.</p>
                                 <p class="lead">
-                                    <a class="btn btn-primary mt-1 btn-sm" href="https://www.wuv.de/digital/appnexus_chef_o_kelley_google_ist_verwundbar" role="button" target="_blank">WUV</a>
-                                    <a class="btn btn-primary mt-1 btn-sm" href="https://www.adzine.de/2018/06/programmatic-markt-auf-dem-weg-zur-unabhaengigkeit/" role="button" target="_blank">Adzine</a>
-                                    <a class="btn btn-primary mt-1 btn-sm" href="https://www.adzine.de/2018/03/wie-sich-media-impact-von-googles-ad-stack-emanzipierte/" role="button" target="_blank">Adzine</a>
-                                </p>
+                                    <a class="btn btn-primary mt-1 btn-sm" href="https://www.bild.de/sport/fussball/bundesliga/ab-2013-bei-bild-de-23720112.bild.html" role="button" target="_blank">Bundesliga bei Bild</a>
+                                </p>-->
                             </div>
                         </div>
 
