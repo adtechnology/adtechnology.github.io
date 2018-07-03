@@ -101,6 +101,27 @@
 </head>
 
 <body>
+
+<noscript id="deferred-styles">
+    <link rel="stylesheet" type="text/css" href="https://d2td6usx9v1yi8.cloudfront.net/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://d2td6usx9v1yi8.cloudfront.net/css/materialdesignicons.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://d2td6usx9v1yi8.cloudfront.net/css/mobiriseicons.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://d2td6usx9v1yi8.cloudfront.net/css/style.min.css"/>
+</noscript>
+<script>
+    var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+    };
+    var raf = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+        window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+    if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+    else window.addEventListener('load', loadDeferredStyles);
+</script>
+
 <!--<link rel="stylesheet" href="https://d2td6usx9v1yi8.cloudfront.net/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">-->
 <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js" integrity="sha384-3LK/3kTpDE/Pkp8gTNp2gR/2gOiwQ6QaO7Td0zV76UFJVhqLl4Vl3KL1We6q6wR9" crossorigin="anonymous" async></script>
 <!-- Start Menu -->
@@ -299,18 +320,7 @@
     let lazy = lazyload();
 
 </script>
-<!--Bootstrap Css-->
 
-<link rel="stylesheet" type="text/css" href="https://d2td6usx9v1yi8.cloudfront.net/css/bootstrap.min.css" class="lazyload"/>
-
-<!-- Materialdesign icons Css-->
-<link href="https://d2td6usx9v1yi8.cloudfront.net/css/materialdesignicons.min.css" rel="stylesheet" class="lazyload">
-
-<!-- Mobirise icons Css-->
-<link href="https://d2td6usx9v1yi8.cloudfront.net/css/mobiriseicons.min.css" rel="stylesheet" class="lazyload">
-
-<!-- Custom style Css-->
-<link href="https://d2td6usx9v1yi8.cloudfront.net/css/style.min.css" rel="stylesheet" class="lazyload">
 
 
 </body>
