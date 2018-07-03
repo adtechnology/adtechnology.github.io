@@ -30,6 +30,8 @@
 
     <link rel="shortcut icon" href="https://d2td6usx9v1yi8.cloudfront.net/images/favicon.ico">
 
+
+
     <!--Tag Manager-->
     <!-- Google Tag Manager -->
     <script>(function (w, d, s, l, i) {
@@ -95,6 +97,24 @@
 
 </head>
 <body>
+
+<!-- deferred-styles-->
+<noscript id="deferred-styles">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+</noscript>
+<script>
+    var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+    };
+    var raf = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+        window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+    if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+    else window.addEventListener('load', loadDeferredStyles);
+</script>
 <!-- Google Tag Manager (noscript) -->
 <noscript>
     <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TKQQRF4"
