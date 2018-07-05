@@ -98,6 +98,25 @@
 
 </head>
 <body>
+<noscript id="deferred-styles">
+    <link rel="stylesheet" type="text/css" href="https://d2td6usx9v1yi8.cloudfront.net/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://d2td6usx9v1yi8.cloudfront.net/css/materialdesignicons.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://d2td6usx9v1yi8.cloudfront.net/css/mobiriseicons.min.css"/>
+    <link rel="stylesheet" type="text/css" href="https://d2td6usx9v1yi8.cloudfront.net/css/style.min.css"/>
+</noscript>
+<script>
+    var loadDeferredStyles = function() {
+        var addStylesNode = document.getElementById("deferred-styles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+    };
+    var raf = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+        window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+    if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+    else window.addEventListener('load', loadDeferredStyles);
+</script>
 
 <!-- Google Tag Manager (noscript) -->
 <noscript>
@@ -206,7 +225,7 @@
 
                     <h1 class="blog-home-title"> hi! I am <span
                             class="text-primary font-weight-bold">Carlos Bracho</span>, a high-level expert of advertising technologies and how can they be seized.
-</h1>
+                    </h1>
                 </div>
             </div>
         </div>
@@ -247,7 +266,7 @@
 
     <p>Prior to my employment at Axel Springer; however, I had already begun to learn how to collaborate on projects that broke down the boundaries between marketing and technology. When I moved from Ecuador to Germany to get a master's degree, I became the head of quality assurance at Softgames Mobile Entertainment Services. Even as I honed my leadership skills, I successfully collaborated with designers, programmers, and other project managers.</p>
 
-        <p>Throughout my career, I have been assisted by my ability to learn and continue to look for opportunities to deepen my expertise. Moreover, I have used my knowledge of people and business to develop a unique management style that allows successful completion of projects and proved bulletproof leadership. </p>
+    <p>Throughout my career, I have been assisted by my ability to learn and continue to look for opportunities to deepen my expertise. Moreover, I have used my knowledge of people and business to develop a unique management style that allows successful completion of projects and proved bulletproof leadership. </p>
 </div>
 <!--START KEYJOBS -->
 <!--<section class="section text-center">
@@ -631,26 +650,6 @@
 
     let lazy = lazyload();
 
-</script>
-
-<noscript id="deferred-styles">
-    <link rel="stylesheet" type="text/css" href="https://d2td6usx9v1yi8.cloudfront.net/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="https://d2td6usx9v1yi8.cloudfront.net/css/materialdesignicons.min.css"/>
-    <link rel="stylesheet" type="text/css" href="https://d2td6usx9v1yi8.cloudfront.net/css/mobiriseicons.min.css"/>
-    <link rel="stylesheet" type="text/css" href="https://d2td6usx9v1yi8.cloudfront.net/css/style.min.css"/>
-</noscript>
-<script>
-    var loadDeferredStyles = function() {
-        var addStylesNode = document.getElementById("deferred-styles");
-        var replacement = document.createElement("div");
-        replacement.innerHTML = addStylesNode.textContent;
-        document.body.appendChild(replacement)
-        addStylesNode.parentElement.removeChild(addStylesNode);
-    };
-    var raf = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
-        window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
-    if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
-    else window.addEventListener('load', loadDeferredStyles);
 </script>
 
 
