@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<link rel="stylesheet" href="http://cdn.fluidplayer.com/v2/current/fluidplayer.min.css" type="text/css"/>
+<script src="http://cdn.fluidplayer.com/v2/current/fluidplayer.min.js"></script>
+
+<video id='video-id'>
+    <source src='https://cdn.fluidplayer.com/current/docs/demo/video.mp4' type='video/mp4'/>
+</video>
+
+<script>
+    var myFP = fluidPlayer(
+        'video-id',
+        {
+            layoutControls: {
+                fillToContainer: false,
+                primaryColor: false,
+                posterImage: false,
+                autoPlay: true,
+                keyboardControl: false,
+                playButtonShowing: false,
+                playPauseAnimation: false,
+                mute: true,
+                logo: {
+                    imageUrl: null,
+                    position: 'top left',
+                    clickUrl: null,
+                    opacity: 1,
+                    mouseOverImageUrl: null,
+                    imageMargin: '2px',
+                    hideWithControls: false,
+                    showOverAds: false
+                },
+                htmlOnPauseBlock: {
+                    html: null,
+                    height: null,
+                    width: null
+                },
+                allowDownload: false,
+                allowTheatre: false,
+                playbackRateEnabled: false,
+                controlBar: {
+                    autoHide: false,
+                    autoHideTimeout: 3,
+                    animated: false
+                },
+            },
+            vastOptions: {
+                // To implement ads see http://docs.fluidplayer.com/ad_configuration/
+            }
+        }
+    );
+</script>
+
+</body>
+</html>
+
