@@ -101,7 +101,7 @@
             googletag.pubads().setTargeting('space', ['education']);
             googletag.pubads().collapseEmptyDivs();
             googletag.pubads().setCentering(true);
-            googletag.pubads().setCookieOptions(1);
+            googletag.pubads().setPrivacySettings({limitedAds: 1});
             googletag.enableServices();
         });
     </script>
@@ -136,7 +136,7 @@
 
                     <!--<div class="container">
                         <div class="row">
-                            <!--<div class="col-1" style="font-size:3em; color:#ff0b20">
+                            <div class="col-1" style="font-size:3em; color:#ff0b20">
                                 <i class="fas fa-rocket"></i>
                             </div>
                             <div class="col-8 col-sm-6">
