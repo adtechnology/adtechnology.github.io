@@ -28,7 +28,6 @@
     <link rel="dns-prefetch" href="https://cv-delta-roan.vercel.app">
     
     <style>
-        /* Reset and base styles */
         * {
             margin: 0;
             padding: 0;
@@ -41,7 +40,7 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
         
-        /* Loading screen styles */
+        /* Loading screen */
         .loading-container {
             position: fixed;
             top: 0;
@@ -91,7 +90,7 @@
             text-align: center;
         }
         
-        /* Iframe container styles */
+        /* Iframe container */
         .iframe-container {
             position: fixed;
             top: 0;
@@ -108,9 +107,14 @@
             border: none;
             display: block;
             background: #ffffff;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .cv-iframe.visible {
+            opacity: 1;
         }
         
-        /* Error fallback styles */
+        /* Error fallback */
         .error-container {
             position: fixed;
             top: 0;
@@ -178,68 +182,41 @@
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
         }
         
-        /* Mobile optimizations */
         @media (max-width: 768px) {
-            .loading-text {
-                font-size: 1rem;
-            }
-            
-            .loading-subtext {
-                font-size: 0.8rem;
-            }
-            
-            .error-title {
-                font-size: 1.25rem;
-            }
-            
-            .error-message {
-                font-size: 0.9rem;
-            }
+            .loading-text { font-size: 1rem; }
+            .loading-subtext { font-size: 0.8rem; }
+            .error-title { font-size: 1.25rem; }
+            .error-message { font-size: 0.9rem; }
         }
         
-        /* Accessibility improvements */
         @media (prefers-reduced-motion: reduce) {
-            .loading-spinner {
-                animation: none;
-            }
-            
-            .loading-container {
-                transition: none;
-            }
+            .loading-spinner { animation: none; }
+            .loading-container { transition: none; }
         }
         
-        /* High contrast mode support */
         @media (prefers-contrast: high) {
-            .error-button {
-                border: 2px solid #000;
-            }
+            .error-button { border: 2px solid #000; }
         }
     </style>
 </head>
 <body>
-    <!-- Loading Screen -->
     <div class="loading-container" id="loadingContainer">
         <div class="loading-spinner"></div>
         <div class="loading-text">Loading Carlos Bracho's CV</div>
         <div class="loading-subtext">Please wait while we prepare your experience...</div>
     </div>
     
-    <!-- Main Iframe Container -->
     <div class="iframe-container">
         <iframe 
             id="cvIframe"
             class="cv-iframe"
-            src="https://cv-delta-roan.vercel.app/"
             title="Carlos Bracho - VP Global AdTech CV"
             loading="eager"
             allow="clipboard-read; clipboard-write"
-            sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
-            onload="handleIframeLoad()"
-            onerror="handleIframeError()">
+            sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation">
         </iframe>
     </div>
     
-    <!-- Error Fallback -->
     <div class="error-container" id="errorContainer">
         <div class="error-icon">⚠️</div>
         <h1 class="error-title">Unable to Load CV</h1>
@@ -254,108 +231,75 @@
     </div>
     
     <script>
-        // Configuration
-        const IFRAME_LOAD_TIMEOUT = 15000; // 15 seconds
+        const IFRAME_URL = "https://cv-delta-roan.vercel.app/";
+        const IFRAME_LOAD_TIMEOUT = 15000;
         const RETRY_ATTEMPTS = 3;
         let currentAttempt = 0;
+        let loadingTimeout;
         
-        // DOM elements
         const loadingContainer = document.getElementById('loadingContainer');
         const errorContainer = document.getElementById('errorContainer');
         const cvIframe = document.getElementById('cvIframe');
         
-        // Loading timeout handler
-        let loadingTimeout;
+        function buildRetryUrl(baseUrl, attempt) {
+            const url = new URL(baseUrl);
+            url.searchParams.set('retry', attempt);
+            return url.toString();
+        }
         
         function startLoadingTimeout() {
             loadingTimeout = setTimeout(() => {
-                console.warn('Iframe loading timeout reached');
+                console.warn('Iframe load timeout');
                 handleIframeError();
             }, IFRAME_LOAD_TIMEOUT);
         }
         
         function clearLoadingTimeout() {
-            if (loadingTimeout) {
-                clearTimeout(loadingTimeout);
-                loadingTimeout = null;
+            clearTimeout(loadingTimeout);
+            loadingTimeout = null;
+        }
+        
+        async function loadIframe(url) {
+            try {
+                await fetch(url, { method: 'HEAD', mode: 'no-cors' });
+                cvIframe.src = url;
+                startLoadingTimeout();
+            } catch (error) {
+                console.error('Preload check failed:', error);
+                handleIframeError();
             }
         }
         
-        // Iframe load success handler
         function handleIframeLoad() {
             console.log('Iframe loaded successfully');
             clearLoadingTimeout();
-            
-            // Hide loading screen with smooth transition
-            setTimeout(() => {
-                loadingContainer.classList.add('hidden');
-            }, 500); // Small delay to ensure iframe is fully rendered
+            cvIframe.classList.add('visible');
+            setTimeout(() => loadingContainer.classList.add('hidden'), 500);
         }
         
-        // Iframe load error handler
         function handleIframeError() {
             console.error('Iframe failed to load');
             clearLoadingTimeout();
-            
             currentAttempt++;
-            
             if (currentAttempt < RETRY_ATTEMPTS) {
-                console.log(`Retrying iframe load (attempt ${currentAttempt + 1}/${RETRY_ATTEMPTS})`);
-                
-                // Retry loading the iframe
+                console.log(`Retrying load: attempt ${currentAttempt + 1}`);
                 setTimeout(() => {
-                    cvIframe.src = cvIframe.src + '?retry=' + currentAttempt;
-                    startLoadingTimeout();
+                    loadIframe(buildRetryUrl(IFRAME_URL, currentAttempt));
                 }, 2000);
             } else {
-                // Show error screen
                 loadingContainer.classList.add('hidden');
                 errorContainer.classList.add('show');
             }
         }
         
-        // Initialize loading timeout when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('GitHub Pages iframe wrapper initialized');
-            startLoadingTimeout();
-            
-            // Fallback: If iframe doesn't trigger onload after a reasonable time
-            setTimeout(() => {
-                if (!loadingContainer.classList.contains('hidden')) {
-                    console.log('Fallback: Hiding loading screen after extended wait');
-                    loadingContainer.classList.add('hidden');
-                }
-            }, 20000); // 20 seconds absolute maximum
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('Initializing CV loader...');
+            loadIframe(IFRAME_URL);
         });
         
-        // Handle page visibility changes (for better mobile experience)
-        document.addEventListener('visibilitychange', function() {
-            if (document.visibilityState === 'visible' && errorContainer.classList.contains('show')) {
-                // Page became visible and we're showing error - maybe try to reload
-                console.log('Page became visible with error state - considering reload');
-            }
-        });
-        
-        // Global error handler
-        window.addEventListener('error', function(e) {
-            console.error('Global error caught:', e.error);
-        });
-        
-        // Handle iframe communication (if needed in the future)
-        window.addEventListener('message', function(event) {
-            // Verify origin for security
-            if (event.origin !== 'https://cv-delta-roan.vercel.app') {
-                return;
-            }
-            
-            // Handle messages from the iframe if needed
-            console.log('Message from iframe:', event.data);
-        });
+        cvIframe.onload = handleIframeLoad;
     </script>
     
-    <!-- Analytics or tracking code can be added here if needed -->
-    
-    <!-- Structured Data for SEO -->
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
