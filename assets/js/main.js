@@ -79,28 +79,34 @@ function updateText(elementName, text) {
     }
 }
 
-// Enhanced device detection
+// Enhanced device detection - ALWAYS redirect Safari browsers
 function detectProblematicDevice() {
     const ua = navigator.userAgent;
-    const isSafariMobile = /Safari/.test(ua) && /Mobile/.test(ua) && !/Chrome/.test(ua);
+    const isSafari = /Safari/.test(ua) && !/Chrome/.test(ua) && !/Chromium/.test(ua);
+    const isSafariMobile = isSafari && /Mobile/.test(ua);
+    const isSafariDesktop = isSafari && !/Mobile/.test(ua);
     const isIOS = /iPad|iPhone|iPod/.test(ua);
     const isAndroidWebView = /Android.*wv\)/.test(ua);
     const isOldBrowser = !window.fetch || !window.Promise || !window.postMessage;
     const isSmallScreen = window.innerWidth < 768 && window.innerHeight < 600;
     
-    const isProblematic = isSafariMobile || 
-                         (isIOS && isSmallScreen) || 
-                         isAndroidWebView || 
+    // FORCE REDIRECTION FOR ALL SAFARI BROWSERS (mobile and desktop)
+    const isProblematic = isSafari ||
+                         (isIOS && isSmallScreen) ||
+                         isAndroidWebView ||
                          isOldBrowser;
     
     return {
         shouldRedirect: isProblematic,
-        reason: isSafariMobile ? 'safari_mobile' : 
-               (isIOS && isSmallScreen) ? 'ios_small_screen' : 
-               isAndroidWebView ? 'android_webview' : 
+        reason: isSafariDesktop ? 'safari_desktop' :
+               isSafariMobile ? 'safari_mobile' :
+               (isIOS && isSmallScreen) ? 'ios_small_screen' :
+               isAndroidWebView ? 'android_webview' :
                isOldBrowser ? 'old_browser' : 'unknown',
         deviceInfo: {
+            isSafari,
             isSafariMobile,
+            isSafariDesktop,
             isIOS,
             isAndroidWebView,
             isOldBrowser,
