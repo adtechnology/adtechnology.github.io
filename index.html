@@ -27,201 +27,39 @@
     <link rel="preconnect" href="https://cv-delta-roan.vercel.app">
     <link rel="dns-prefetch" href="https://cv-delta-roan.vercel.app">
     
-    <style>
-        /* Reset and base styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        html, body {
-            height: 100%;
-            overflow: hidden;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
-        
-        /* Loading screen styles */
-        .loading-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #f5f5f4 0%, #ffffff 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            transition: opacity 0.5s ease, visibility 0.5s ease;
-        }
-        
-        .loading-container.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-        
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid #e5e7eb;
-            border-top: 4px solid #2563eb;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-bottom: 2rem;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .loading-text {
-            color: #6b7280;
-            font-size: 1.1rem;
-            font-weight: 500;
-            text-align: center;
-            margin-bottom: 0.5rem;
-        }
-        
-        .loading-subtext {
-            color: #9ca3af;
-            font-size: 0.9rem;
-            text-align: center;
-        }
-        
-        /* Iframe container styles */
-        .iframe-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border: none;
-            overflow: hidden;
-        }
-        
-        .cv-iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
-            background: #ffffff;
-        }
-        
-        /* Error fallback styles */
-        .error-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #f5f5f4 0%, #ffffff 100%);
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
-            text-align: center;
-        }
-        
-        .error-container.show {
-            display: flex;
-        }
-        
-        .error-icon {
-            width: 80px;
-            height: 80px;
-            background: #fee2e2;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 2rem;
-            font-size: 2rem;
-            color: #dc2626;
-        }
-        
-        .error-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1f2937;
-            margin-bottom: 1rem;
-        }
-        
-        .error-message {
-            font-size: 1rem;
-            color: #6b7280;
-            margin-bottom: 2rem;
-            max-width: 500px;
-            line-height: 1.6;
-        }
-        
-        .error-button {
-            background: #2563eb;
-            color: white;
-            padding: 0.875rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            text-decoration: none;
-            display: inline-block;
-        }
-        
-        .error-button:hover {
-            background: #1d4ed8;
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
-        }
-        
-        /* Mobile optimizations */
-        @media (max-width: 768px) {
-            .loading-text {
-                font-size: 1rem;
-            }
-            
-            .loading-subtext {
-                font-size: 0.8rem;
-            }
-            
-            .error-title {
-                font-size: 1.25rem;
-            }
-            
-            .error-message {
-                font-size: 0.9rem;
-            }
-        }
-        
-        /* Accessibility improvements */
-        @media (prefers-reduced-motion: reduce) {
-            .loading-spinner {
-                animation: none;
-            }
-            
-            .loading-container {
-                transition: none;
-            }
-        }
-        
-        /* High contrast mode support */
-        @media (prefers-contrast: high) {
-            .error-button {
-                border: 2px solid #000;
-            }
-        }
-    </style>
+    <!-- External CSS with cache-friendly versioning -->
+    <link rel="stylesheet" href="assets/css/main.css?v=1.0.0">
 </head>
 <body>
     <!-- Loading Screen -->
     <div class="loading-container" id="loadingContainer">
         <div class="loading-spinner"></div>
-        <div class="loading-text">Loading Carlos Bracho's CV</div>
-        <div class="loading-subtext">Please wait while we prepare your experience...</div>
+        <div class="loading-text" id="loadingText">Loading Carlos Bracho's CV</div>
+        <div class="loading-subtext" id="loadingSubtext">Please wait while we prepare your experience...</div>
+    </div>
+    
+    <!-- Redirect Screen (hidden by default) -->
+    <div class="redirect-container hidden" id="redirectContainer">
+        <div class="loading-spinner"></div>
+        <div class="loading-text" id="redirectText">Redirecting for better compatibility...</div>
+        <div class="loading-subtext" id="redirectSubtext">Optimizing experience for your device</div>
+    </div>
+    
+    <!-- Retry Screen (hidden by default) -->
+    <div class="retry-container hidden" id="retryContainer">
+        <div class="loading-spinner"></div>
+        <div class="loading-text" id="retryText">Retrying connection...</div>
+        <div class="loading-subtext" id="retrySubtext">Attempt 1 of 3</div>
+    </div>
+    
+    <!-- Manual Redirect Screen (hidden by default) -->
+    <div class="manual-redirect-container hidden" id="manualRedirectContainer">
+        <div class="error-icon">🔄</div>
+        <div class="error-title">Manual Redirect Required</div>
+        <div class="error-message">
+            Please click the button below to access the CV directly:
+        </div>
+        <a href="https://cv-delta-roan.vercel.app/" class="error-button" id="manualRedirectButton">Go to CV</a>
     </div>
     
     <!-- Main Iframe Container -->
@@ -233,14 +71,12 @@
             title="Carlos Bracho - VP Global AdTech CV"
             loading="eager"
             allow="clipboard-read; clipboard-write"
-            sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation"
-            onload="handleIframeLoad()"
-            onerror="handleIframeError()">
+            sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox allow-top-navigation-by-user-activation">
         </iframe>
     </div>
     
     <!-- Error Fallback -->
-    <div class="error-container" id="errorContainer">
+    <div class="error-container hidden" id="errorContainer">
         <div class="error-icon">⚠️</div>
         <h1 class="error-title">Unable to Load CV</h1>
         <p class="error-message">
@@ -252,308 +88,6 @@
             Visit CV Directly
         </a>
     </div>
-    
-    <script>
-        // Configuration
-        const IFRAME_LOAD_TIMEOUT = 15000; // 15 seconds
-        const RETRY_ATTEMPTS = 3;
-        const VERCEL_URL = 'https://cv-delta-roan.vercel.app/';
-        let currentAttempt = 0;
-        let deviceCheckComplete = false;
-        
-        // DOM elements
-        const loadingContainer = document.getElementById('loadingContainer');
-        const errorContainer = document.getElementById('errorContainer');
-        const cvIframe = document.getElementById('cvIframe');
-        
-        // Loading timeout handler
-        let loadingTimeout;
-        
-        // Enhanced device detection
-        function detectProblematicDevice() {
-            const ua = navigator.userAgent;
-            const isSafariMobile = /Safari/.test(ua) && /Mobile/.test(ua) && !/Chrome/.test(ua);
-            const isIOS = /iPad|iPhone|iPod/.test(ua);
-            const isAndroidWebView = /Android.*wv\)/.test(ua);
-            const isOldBrowser = !window.fetch || !window.Promise || !window.postMessage;
-            const isSmallScreen = window.innerWidth < 768 && window.innerHeight < 600;
-            
-            // Enhanced detection for problematic scenarios
-            const isProblematic = isSafariMobile || 
-                                 (isIOS && isSmallScreen) || 
-                                 isAndroidWebView || 
-                                 isOldBrowser;
-            
-            return {
-                shouldRedirect: isProblematic,
-                reason: isSafariMobile ? 'safari_mobile' : 
-                       (isIOS && isSmallScreen) ? 'ios_small_screen' : 
-                       isAndroidWebView ? 'android_webview' : 
-                       isOldBrowser ? 'old_browser' : 'unknown',
-                deviceInfo: {
-                    isSafariMobile,
-                    isIOS,
-                    isAndroidWebView,
-                    isOldBrowser,
-                    isSmallScreen,
-                    userAgent: ua.substring(0, 100)
-                }
-            };
-        }
-        
-        // Redirect function with multiple fallback methods
-        function performRedirect(reason = 'compatibility') {
-            console.log(`=== PERFORMING REDIRECT (${reason}) ===`);
-            
-            // Update loading message
-            loadingContainer.innerHTML = `
-                <div class="loading-spinner"></div>
-                <div class="loading-text">Redirecting for better compatibility...</div>
-                <div class="loading-subtext">Optimizing experience for your device</div>
-            `;
-            
-            // Perform redirect after short delay
-            setTimeout(() => {
-                try {
-                    // Method 1: Standard redirect
-                    window.location.href = VERCEL_URL;
-                } catch (error) {
-                    console.log('Standard redirect failed:', error);
-                    
-                    try {
-                        // Method 2: Location replace
-                        window.location.replace(VERCEL_URL);
-                    } catch (error2) {
-                        console.log('Location replace failed:', error2);
-                        
-                        // Method 3: Show manual redirect message
-                        loadingContainer.innerHTML = `
-                            <div class="error-icon">🔄</div>
-                            <div class="error-title">Manual Redirect Required</div>
-                            <div class="error-message">
-                                Please click the button below to access the CV directly:
-                            </div>
-                            <a href="${VERCEL_URL}" class="error-button">Go to CV</a>
-                        `;
-                    }
-                }
-            }, 2000);
-        }
-        
-        // Device compatibility check
-        function checkDeviceCompatibility() {
-            console.log('=== DEVICE COMPATIBILITY CHECK ===');
-            
-            const deviceCheck = detectProblematicDevice();
-            console.log('Device check result:', deviceCheck);
-            
-            if (deviceCheck.shouldRedirect) {
-                console.log('=== DEVICE INCOMPATIBLE - REDIRECTING ===');
-                console.log('Reason:', deviceCheck.reason);
-                console.log('Device info:', deviceCheck.deviceInfo);
-                
-                performRedirect(deviceCheck.reason);
-                return false; // Don't load iframe
-            }
-            
-            console.log('=== DEVICE COMPATIBLE - LOADING IFRAME ===');
-            return true; // Load iframe
-        }
-        
-        // Initialize iframe loading
-        function initializeIframe() {
-            console.log('=== INITIALIZING IFRAME ===');
-            
-            // Set iframe source
-            cvIframe.src = VERCEL_URL;
-            
-            // Start loading timeout
-            startLoadingTimeout();
-        }
-        
-        function startLoadingTimeout() {
-            loadingTimeout = setTimeout(() => {
-                console.warn('Iframe loading timeout reached');
-                handleIframeError();
-            }, IFRAME_LOAD_TIMEOUT);
-        }
-        
-        function clearLoadingTimeout() {
-            if (loadingTimeout) {
-                clearTimeout(loadingTimeout);
-                loadingTimeout = null;
-            }
-        }
-        
-        // Iframe load success handler
-        function handleIframeLoad() {
-            console.log('=== IFRAME LOADED SUCCESSFULLY ===');
-            clearLoadingTimeout();
-            
-            // Hide loading screen with smooth transition
-            setTimeout(() => {
-                loadingContainer.classList.add('hidden');
-            }, 500);
-        }
-        
-        // Enhanced iframe error handler
-        function handleIframeError() {
-            console.error('=== IFRAME LOAD FAILED ===');
-            clearLoadingTimeout();
-            
-            currentAttempt++;
-            
-            if (currentAttempt < RETRY_ATTEMPTS) {
-                console.log(`Retrying iframe load (attempt ${currentAttempt + 1}/${RETRY_ATTEMPTS})`);
-                
-                // Progressive retry delays: 2s, 4s, 6s
-                const retryDelay = currentAttempt * 2000;
-                
-                // Update loading message
-                loadingContainer.innerHTML = `
-                    <div class="loading-spinner"></div>
-                    <div class="loading-text">Retrying connection...</div>
-                    <div class="loading-subtext">Attempt ${currentAttempt + 1} of ${RETRY_ATTEMPTS}</div>
-                `;
-                
-                setTimeout(() => {
-                    // Try with cache-busting parameters
-                    const timestamp = Date.now();
-                    const retryParam = `?retry=${currentAttempt}&t=${timestamp}`;
-                    cvIframe.src = VERCEL_URL + retryParam;
-                    startLoadingTimeout();
-                }, retryDelay);
-            } else {
-                console.log('=== ALL RETRY ATTEMPTS FAILED ===');
-                
-                // Final check: maybe device should redirect instead
-                const deviceCheck = detectProblematicDevice();
-                if (deviceCheck.shouldRedirect) {
-                    console.log('Device incompatible detected after failures, redirecting');
-                    performRedirect('retry_failure');
-                } else {
-                    // Show error screen for compatible devices
-                    console.log('Showing error screen');
-                    loadingContainer.classList.add('hidden');
-                    errorContainer.classList.add('show');
-                }
-            }
-        }
-        
-        // Enhanced iframe communication
-        window.addEventListener('message', function(event) {
-            console.log('=== MESSAGE FROM IFRAME ===');
-            console.log('Origin:', event.origin);
-            console.log('Data:', event.data);
-            
-            // Verify origin for security
-            if (event.origin !== 'https://cv-delta-roan.vercel.app') {
-                console.log('Message from unauthorized origin, ignoring');
-                return;
-            }
-            
-            // Handle redirect requests from iframe
-            if (event.data && event.data.type === 'REDIRECT_REQUEST') {
-                console.log('=== REDIRECT REQUEST FROM IFRAME ===');
-                console.log('Target URL:', event.data.url);
-                console.log('Reason:', event.data.reason);
-                
-                // Perform the redirect
-                window.location.href = event.data.url;
-            }
-            
-            // Handle iframe ready signal
-            if (event.data && event.data.type === 'IFRAME_READY') {
-                console.log('Iframe reports ready');
-                handleIframeLoad();
-            }
-            
-            // Handle authentication success
-            if (event.data && event.data.type === 'AUTH_SUCCESS') {
-                console.log('Authentication successful in iframe');
-                handleIframeLoad();
-            }
-        });
-        
-        // Initialize when DOM is ready
-        document.addEventListener('DOMContentLoaded', function() {
-            console.log('=== GITHUB PAGES WRAPPER INITIALIZED ===');
-            console.log('User Agent:', navigator.userAgent);
-            console.log('Screen size:', window.innerWidth + 'x' + window.innerHeight);
-            console.log('Viewport size:', window.screen.width + 'x' + window.screen.height);
-            
-            // Check device compatibility first
-            if (checkDeviceCompatibility()) {
-                // Device is compatible, initialize iframe
-                initializeIframe();
-                deviceCheckComplete = true;
-            } else {
-                // Device is incompatible, redirect is already initiated
-                deviceCheckComplete = true;
-                return;
-            }
-            
-            // Absolute fallback: If iframe doesn't load after extended time
-            setTimeout(() => {
-                if (!loadingContainer.classList.contains('hidden') && deviceCheckComplete) {
-                    console.log('=== ABSOLUTE FALLBACK TRIGGERED ===');
-                    console.log('Iframe failed to load within absolute timeout');
-                    
-                    // Final device check
-                    const finalCheck = detectProblematicDevice();
-                    if (finalCheck.shouldRedirect) {
-                        performRedirect('absolute_timeout');
-                    } else {
-                        // Hide loading and show error for compatible devices
-                        loadingContainer.classList.add('hidden');
-                        errorContainer.classList.add('show');
-                    }
-                }
-            }, 25000); // 25 seconds absolute maximum
-        });
-        
-        // Handle page visibility changes (for better mobile experience)
-        document.addEventListener('visibilitychange', function() {
-            if (document.visibilityState === 'visible') {
-                console.log('=== PAGE BECAME VISIBLE ===');
-                
-                if (errorContainer.classList.contains('show')) {
-                    console.log('Page visible with error state - user might want to retry');
-                }
-                
-                // If iframe is loaded but hidden, ensure it's visible
-                if (!loadingContainer.classList.contains('hidden') && cvIframe.src) {
-                    console.log('Page visible but still loading - checking iframe status');
-                }
-            }
-        });
-        
-        // Global error handler
-        window.addEventListener('error', function(e) {
-            console.error('=== GLOBAL ERROR CAUGHT ===');
-            console.error('Error:', e.error);
-            console.error('Message:', e.message);
-            console.error('Source:', e.filename);
-            console.error('Line:', e.lineno);
-            
-            // If error occurs during iframe loading, treat as iframe error
-            if (!deviceCheckComplete || !loadingContainer.classList.contains('hidden')) {
-                console.log('Error during loading phase, treating as iframe error');
-                handleIframeError();
-            }
-        });
-        
-        // Handle unhandled promise rejections
-        window.addEventListener('unhandledrejection', function(e) {
-            console.error('=== UNHANDLED PROMISE REJECTION ===');
-            console.error('Reason:', e.reason);
-            
-            // Don't treat promise rejections as iframe errors unless during loading
-            if (!deviceCheckComplete) {
-                console.log('Promise rejection during loading phase');
-            }
-        });
-    </script>
     
     <!-- Structured Data for SEO -->
     <script type="application/ld+json">
@@ -580,5 +114,8 @@
         ]
     }
     </script>
+    
+    <!-- External JS with cache-friendly versioning -->
+    <script src="assets/js/main.js?v=1.0.0"></script>
 </body>
 </html>
